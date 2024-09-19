@@ -15,8 +15,22 @@ vim.lsp.start({
 })
 
 
+local executor = require('core.executor')
 local map = vim.keymap.set
 local opts = { silent = true }
 
+
+
+local compile = function ()
+	executor.execute_command('typst', {'compile', vim.api.nvim_buf_get_name(0)})
+end
+
+
+local watch = function ()
+	executor.execute_command('typst', {'watch', vim.api.nvim_buf_get_name(0)})
+end
+
+map('n', '<localleader>r', compile, opts)
+map('n', '<localleader>w', watch, opts)
 map('n', '<localleader>p', vim.cmd.TypstPreviewToggle, opts)
 map('n', '<localleader>f', vim.cmd.Format, opts)
