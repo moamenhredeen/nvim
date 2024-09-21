@@ -20,26 +20,36 @@ return {
 				"java",
 				"angular",
 				"typst",
+				"markdown",
+				"markdown_inline"
 			},
-			auto_intall = true,
-			highlight = {
-				enable = true,
-				additional_vim_regex_highlight = false
-			},
-			ident = { enable = true },
-			rainbow = {
-				enable = true,
-				extended_mode = true,
-				max_file_lines = nil,
-			},
-			incremental_selection = {
-				enable = true,
-				keymaps = {
-					node_incremental = "<Space>",
-					-- scope_incremental = "grc",
-					node_decremental = "<BS>",
+			sync_install = false,
+			ignore_install = {},
+			auto_install = true,
+			modules = {
+				highlight = {
+					enable = true,
+					additional_vim_regex_highlight = false
+				},
+				indent = {
+					enable = true,
+				},
+				rainbow = {
+					enable = true,
+					extended_mode = true,
+					max_file_lines = nil,
+				},
+				incremental_selection = {
+					enable = true,
+					keymaps = {
+						node_incremental = "<Space>",
+						node_decremental = "<BS>",
+					},
 				},
 			},
 		})
+
+		vim.wo.foldmethod = "expr"
+		vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 	end
 }
