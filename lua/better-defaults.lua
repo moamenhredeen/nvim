@@ -9,6 +9,9 @@
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
+-- unfold be default 
+vim.o.foldlevel = 99
+
 -- disable virtual text in neovim
 vim.diagnostic.config({
 		virtual_text = false,
