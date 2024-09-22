@@ -7,10 +7,8 @@ vim.g.rustaceanvim = {
 		on_attach = default_lsp_on_attach_handler
 	},
 	tools = {
-		-- executor = 'background',
-		-- test_executor = 'background',
 		float_win_config = {
-			border = 'rounded'
+			border = 'rounded',
 		}
 	}
 }

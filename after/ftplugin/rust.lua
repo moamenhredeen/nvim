@@ -1,6 +1,9 @@
 local map = vim.keymap.set
 local opts = { silent = true }
 
+vim.diagnostic.config({ virtual_text = true })
+
+
 map('n', '<localleader>r', function() vim.cmd.RustLsp { 'runnables', bang = true } end, opts)
 map('n', '<localleader>R', function() vim.cmd.RustLsp { 'runnables' } end, opts)
 map('n', '<localleader>t', function() vim.cmd.RustLsp { 'testables', bang = true } end, opts)

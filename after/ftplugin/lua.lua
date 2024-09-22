@@ -26,3 +26,7 @@ vim.lsp.start({
 		},
 	},
 })
+
+
+
+vim.keymap.set('n', '<localleader>r', ':luafile %<CR>', { silent = true} )
