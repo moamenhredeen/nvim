@@ -4,6 +4,7 @@
 -- ***
 
 
+
 -- disable netrw at the very start of your init.lua (strongly advised)
 -- i use nvim-tree instead
 vim.g.loaded_netrw = 1
@@ -11,6 +12,12 @@ vim.g.loaded_netrwPlugin = 1
 
 -- unfold be default 
 vim.o.foldlevel = 99
+
+
+-- theme
+vim.o.background = "dark"
+vim.cmd('colorscheme default')
+
 
 -- disable virtual text in neovim
 vim.diagnostic.config({
@@ -29,7 +36,7 @@ vim.diagnostic.config({
 -- }
 
 -- cursor shape
-vim.o.guicursor = "v-c-i-n:block"
+vim.o.guicursor = "v-c-i-n:block-CurSearch"
 
 
 -- status line

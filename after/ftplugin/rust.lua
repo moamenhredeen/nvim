@@ -1,8 +1,6 @@
 local map = vim.keymap.set
 local opts = { silent = true }
 
-vim.diagnostic.config({ virtual_text = true })
-
 
 map('n', '<localleader>r', function() vim.cmd.RustLsp { 'runnables', bang = true } end, opts)
 map('n', '<localleader>R', function() vim.cmd.RustLsp { 'runnables' } end, opts)
@@ -14,12 +12,11 @@ map('n', '<localleader>d', function() vim.cmd.RustLsp('renderDiagnostic') end, o
 map('n', '<localleader>p', function() vim.cmd.RustLsp('openCargo') end, opts)
 map('n', '<localleader>c', function() vim.cmd.RustLsp('flyCheck') end, opts)
 map('n', '<localleader>v', function() vim.cmd.RustLsp { 'view', 'hir' } end, opts)
-map('n', '<localleader>f', function() vim.lsp.buf.format() end, opts)
 
 
-vim.api.nvim_create_autocmd('BufWritePre', {
-	group = vim.api.nvim_create_augroup('trim_whitespaces', { clear = true }),
-	desc = 'Trim trailing white spaces',
-	pattern = '<buffer>',
-	callback = require('core.utils').trim_trailing_whitespaces
-})
+-- vim.api.nvim_create_autocmd('BufWritePre', {
+-- 	group = vim.api.nvim_create_augroup('trim_whitespaces', { clear = true }),
+-- 	desc = 'Trim trailing white spaces',
+-- 	pattern = '<buffer>',
+-- 	callback = require('core.utils').trim_trailing_whitespaces
+-- })

@@ -4,7 +4,8 @@ local root_dir = vim.fs.root(0, { 'build.zig', 'build.zig.zon' })
 
 -- don't show parse errors in a separate window
 vim.g.zig_fmt_parse_errors = 0
-vim.diagnostic.config({ virtual_text = true })
+vim.g.zig_fmt_autosave = 0
+-- vim.diagnostic.config({ virtual_text = true })
 
 vim.lsp.start({
 	name = 'zls',
@@ -36,6 +37,3 @@ end, opts)
 vim.keymap.set('n', '<localleader>t', function ()
 	executor.execute_command('zig', {'test', vim.api.nvim_buf_get_name(0)})
 end, opts)
-
-
-vim.keymap.set('n', '<localleader>f', vim.cmd.Format, opts)
