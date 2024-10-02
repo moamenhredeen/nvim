@@ -10,7 +10,7 @@
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
--- unfold be default 
+-- unfold be default
 vim.o.foldlevel = 99
 
 
@@ -20,9 +20,9 @@ vim.cmd('colorscheme default')
 
 
 -- disable virtual text in neovim
-vim.diagnostic.config({
-		virtual_text = false,
-})
+-- vim.diagnostic.config({
+-- 		virtual_text = false,
+-- })
 
 -- render tabs and eol
 -- vim.opt.list = true
@@ -142,5 +142,3 @@ vim.keymap.set('n', 'N', 'Nzz', { silent = true })
 vim.keymap.set('n', '*', '*zz', { silent = true })
 vim.keymap.set('n', '#', '#zz', { silent = true })
 vim.keymap.set('n', 'g*', 'g*zz', { silent = true })
-
-

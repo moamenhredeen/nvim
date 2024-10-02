@@ -1,4 +1,3 @@
-
 -- *************************************************
 -- make nvim rust IDE 😎
 --
@@ -6,7 +5,8 @@
 return {
 	'saecki/crates.nvim',
 	tag = 'stable',
-	config =  function()
+	event = { "BufRead Cargo.toml" },
+	config = function()
 		local crates = require('crates')
 		crates.setup()
 

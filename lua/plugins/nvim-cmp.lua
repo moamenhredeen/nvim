@@ -16,7 +16,7 @@ return {
 			},
 		},
 	},
-	config =  function()
+	config = function()
 		local cmp = require('cmp')
 		local luasnip = require('luasnip')
 		require("luasnip.loaders.from_vscode").lazy_load()
@@ -57,7 +57,6 @@ return {
 				{ name = 'nvim_lsp' },
 				{ name = 'luasnip' },
 				{ name = 'path' },
-				{ name = 'orgmode' },
 			},
 		})
 	end
