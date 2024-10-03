@@ -21,7 +21,7 @@ vim.cmd('colorscheme default')
 
 -- disable virtual text in neovim
 -- vim.diagnostic.config({
--- 		virtual_text = false,
+-- 	virtual_text = false,
 -- })
 
 -- render tabs and eol
