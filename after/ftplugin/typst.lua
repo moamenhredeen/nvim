@@ -1,6 +1,11 @@
+-- check if the server exists
+if not vim.fn.executable("typst-lsp") then
+	vim.notify("typst langauge server could not be found.", vim.log.levels.WARN)
+	return
+end
 
 
-local default_lsp_on_attach_handler = require('core.lsp').default_lsp_on_attach_handler
+local on_attach = require('core.lsp').default_lsp_on_attach_handler
 
 vim.lsp.start({
 	name = 'typst-lsp',
@@ -9,9 +14,7 @@ vim.lsp.start({
 	cmd = { 'typst-lsp' },
 	capabilities = vim.lsp.protocol.make_client_capabilities(),
 	root_dir = vim.fn.getcwd(),
-	on_attach = default_lsp_on_attach_handler,
-	settings = {
-	},
+	on_attach = on_attach,
 })
 
 
@@ -21,13 +24,13 @@ local opts = { silent = true }
 
 
 
-local compile = function ()
-	executor.execute_command('typst', {'compile', vim.api.nvim_buf_get_name(0)})
+local compile = function()
+	executor.execute_command('typst', { 'compile', vim.api.nvim_buf_get_name(0) })
 end
 
 
-local watch = function ()
-	executor.execute_command('typst', {'watch', vim.api.nvim_buf_get_name(0)})
+local watch = function()
+	executor.execute_command('typst', { 'watch', vim.api.nvim_buf_get_name(0) })
 end
 
 map('n', '<localleader>r', compile, opts)

@@ -122,19 +122,15 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 -- shortcuts
 vim.keymap.set('n', '<Leader>w', ':w<CR>')
 
--- window navigation
-vim.keymap.set('n', '<M-j>', '<C-w>j')
-vim.keymap.set('n', '<M-k>', '<C-w>k')
-vim.keymap.set('n', '<M-h>', '<C-w>h')
-vim.keymap.set('n', '<M-l>', '<C-w>l')
-vim.keymap.set('n', '<M-l>', '<C-w>l')
-vim.keymap.set('n', '<M-q>', '<C-w>q')
-vim.keymap.set('n', '<M-o>', '<C-w>o')
-vim.keymap.set('n', '<M-s>', '<C-w>s')
-vim.keymap.set('n', '<M-v>', '<C-w>v')
-vim.keymap.set('n', '<M-r>', '<C-w>r')
-vim.keymap.set('n', '<M-n>', ':windo wincmd H<CR>')
-vim.keymap.set('n', '<M-m>', ':windo wincmd K<CR>')
+-- pane navigation
+vim.keymap.set('n', '<C-j>', '<C-w>j')
+vim.keymap.set('n', '<C-k>', '<C-w>k')
+vim.keymap.set('n', '<C-h>', '<C-w>h')
+vim.keymap.set('n', '<C-l>', '<C-w>l')
+
+-- TODO: use <C-s> to switch bettween vertical and horizontal layout
+-- vim.keymap.set('n', '<M-n>', ':windo wincmd H<CR>')
+-- vim.keymap.set('n', '<M-m>', ':windo wincmd K<CR>')
 
 -- always center search results
 vim.keymap.set('n', 'n', 'nzz', { silent = true })

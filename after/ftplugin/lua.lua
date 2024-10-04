@@ -1,5 +1,10 @@
+-- check if the server exists
+if not vim.fn.executable("lua-language-server") then
+	vim.notify("lua language server could not be found.", vim.log.levels.WARN)
+	return
+end
 
-local default_lsp_on_attach_handler = require('core.lsp').default_lsp_on_attach_handler
+local on_attach = require('core.lsp').default_lsp_on_attach_handler
 
 vim.lsp.start({
 	name = 'LuaLS',
@@ -8,7 +13,7 @@ vim.lsp.start({
 	cmd = { 'lua-language-server' },
 	capabilities = vim.lsp.protocol.make_client_capabilities(),
 	root_dir = vim.fn.getcwd(),
-	on_attach = default_lsp_on_attach_handler,
+	on_attach = on_attach,
 	settings = {
 		Lua = {
 			runtime = {
@@ -28,5 +33,4 @@ vim.lsp.start({
 })
 
 
-
-vim.keymap.set('n', '<localleader>r', ':luafile %<CR>', { silent = true} )
+vim.keymap.set('n', '<localleader>r', ':luafile %<CR>', { silent = true })
