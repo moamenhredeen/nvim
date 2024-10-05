@@ -4,8 +4,6 @@ if not vim.fn.executable("rust-analyzer") then
 	return {}
 end
 
--- local on_attach = require("core.lsp").default_lsp_on_attach_handler
-
 local on_attach = function()
 	local nmap = function(keys, func)
 		vim.keymap.set('n', keys, func, { silent = true })
@@ -14,7 +12,7 @@ local on_attach = function()
 	local telescope_built_ins = require('telescope.builtin')
 
 	-- actions
-	nmap('<Leader>a', vim.cmd.RustLsp('codeAction'))
+	nmap('<Leader>a', function() vim.cmd.RustLsp('codeAction') end)
 	nmap('K', vim.lsp.buf.hover)
 
 	-- refactoring
