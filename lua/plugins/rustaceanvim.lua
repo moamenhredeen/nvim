@@ -12,7 +12,8 @@ local on_attach = function()
 	local telescope_built_ins = require('telescope.builtin')
 
 	-- actions
-	nmap('<Leader>a', function() vim.cmd.RustLsp('codeAction') end)
+	nmap('<Leader>a', vim.lsp.buf.code_action)
+	nmap('<localleader>a', function() vim.cmd.RustLsp('codeAction') end)
 	nmap('K', vim.lsp.buf.hover)
 
 	-- refactoring
@@ -56,6 +57,9 @@ vim.g.rustaceanvim = {
 		on_attach = on_attach
 	},
 	tools = {
+		code_actions = {
+			ui_select_fallback = true
+		},
 		float_win_config = {
 			border = 'rounded',
 		},
