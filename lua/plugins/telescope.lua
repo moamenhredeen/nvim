@@ -9,12 +9,14 @@ return {
 	},
 	config = function()
 		local telescope = require('telescope')
+		local telescope_actions = require('telescope.actions')
 		telescope.setup({
 			defaults = require('telescope.themes').get_dropdown({
 				preview = false,
 				mappings = {
 					i = {
-						["<CR>"] = require("telescope.actions").select_default + require("telescope.actions").center,
+						["<CR>"] = telescope_actions.select_default + telescope_actions.center,
+						["jk"] = telescope_actions.close,
 					},
 					n = {
 						["<CR>"] = require("telescope.actions").select_default + require("telescope.actions").center,
