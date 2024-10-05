@@ -10,6 +10,7 @@
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
+
 -- unfold be default
 vim.o.foldlevel = 99
 
@@ -36,7 +37,7 @@ vim.cmd('colorscheme default')
 -- }
 
 -- cursor shape
-vim.o.guicursor = "v-c-i-n:block-CurSearch"
+-- vim.o.guicursor = "v-c-i-n:block-CurSearch"
 
 
 -- status line
@@ -123,14 +124,13 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set('n', '<Leader>w', ':w<CR>')
 
 -- pane navigation
-vim.keymap.set('n', '<C-j>', '<C-w>j')
-vim.keymap.set('n', '<C-k>', '<C-w>k')
-vim.keymap.set('n', '<C-h>', '<C-w>h')
-vim.keymap.set('n', '<C-l>', '<C-w>l')
-
--- TODO: use <C-s> to switch bettween vertical and horizontal layout
--- vim.keymap.set('n', '<M-n>', ':windo wincmd H<CR>')
--- vim.keymap.set('n', '<M-m>', ':windo wincmd K<CR>')
+vim.keymap.set('n', '<M-j>', '<C-w>j')
+vim.keymap.set('n', '<M-k>', '<C-w>k')
+vim.keymap.set('n', '<M-h>', '<C-w>h')
+vim.keymap.set('n', '<M-l>', '<C-w>l')
+vim.keymap.set('n', '<M-o>', '<C-w>o')
+vim.keymap.set('n', '<M-n>', ':windo wincmd H<CR>')
+vim.keymap.set('n', '<M-m>', ':windo wincmd K<CR>')
 
 -- always center search results
 vim.keymap.set('n', 'n', 'nzz', { silent = true })
