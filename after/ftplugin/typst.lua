@@ -5,7 +5,7 @@ if not vim.fn.executable("typst-lsp") then
 end
 
 
-local on_attach = require('core.lsp').default_lsp_on_attach_handler
+local on_attach = require('custom.lsp').default_lsp_on_attach_handler
 
 vim.lsp.start({
 	name = 'typst-lsp',
@@ -18,7 +18,7 @@ vim.lsp.start({
 })
 
 
-local executor = require('core.executor')
+local executor = require('custom.executor')
 local map = vim.keymap.set
 local opts = { silent = true }
 

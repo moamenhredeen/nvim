@@ -2,5 +2,5 @@
 -- 	group = vim.api.nvim_create_augroup('trim_whitespaces', { clear = true }),
 -- 	desc = 'Trim trailing white spaces',
 -- 	pattern = '<buffer>',
--- 	callback = require('core.utils').trim_trailing_whitespaces
+-- 	callback = require('custom.utils').trim_trailing_whitespaces
 -- })

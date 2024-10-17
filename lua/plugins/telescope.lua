@@ -11,7 +11,7 @@ return {
 		local telescope = require('telescope')
 		local telescope_actions = require('telescope.actions')
 		telescope.setup({
-			defaults = require('telescope.themes').get_dropdown({
+			defaults = require('telescope.themes').get_ivy({
 				preview = false,
 				mappings = {
 					i = {
@@ -41,5 +41,6 @@ return {
 		vim.keymap.set('n', '<Leader>cb', telescope_builtin.git_branches, { desc = '[B]ranches' })
 
 		telescope.load_extension('ui-select')
+		telescope.load_extension("flutter")
 	end
 }

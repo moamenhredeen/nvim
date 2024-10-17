@@ -5,7 +5,7 @@ if not vim.fn.executable("zls") then
 end
 
 
-local on_attach = require('core.lsp').default_lsp_on_attach_handler
+local on_attach = require('custom.lsp').default_lsp_on_attach_handler
 local root_dir = vim.fs.root(0, { 'build.zig', 'build.zig.zon' })
 
 -- don't show parse errors in a separate window
@@ -25,7 +25,7 @@ vim.lsp.start({
 
 
 
-local executor = require('core.executor')
+local executor = require('custom.executor')
 local opts = { silent = true }
 
 -- run zig project

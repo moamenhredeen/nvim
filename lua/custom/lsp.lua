@@ -6,8 +6,7 @@ local _M = {}
 -- @param client vim.lsp.Client
 -- @param bufnr integer
 _M.default_lsp_on_attach_handler = function(client, bufnr)
-	-- disable lsp syntax highlight
-	-- client.server_capabilities.semanticTokensProvider = nil
+	client.server_capabilities.semanticTokensProvider = nil
 
 	local nmap = function(keys, func, desc)
 		if desc then

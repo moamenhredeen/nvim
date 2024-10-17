@@ -13,7 +13,6 @@ local on_attach = function()
 
 	-- actions
 	nmap('<Leader>a', vim.lsp.buf.code_action)
-	nmap('<localleader>a', function() vim.cmd.RustLsp('codeAction') end)
 	nmap('K', vim.lsp.buf.hover)
 
 	-- refactoring
@@ -70,6 +69,7 @@ vim.g.rustaceanvim = {
 
 return {
 	'mrcjkb/rustaceanvim',
-	version = '^5', -- Recommended
-	lazy = false, -- This plugin is already lazy
+	dependencies = { "mfussenegger/nvim-dap" },
+	version = '^5',
+	lazy = false,
 }

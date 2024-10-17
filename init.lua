@@ -11,9 +11,7 @@
 --  ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║
 --  ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝
 
--- better defaults
 require('better-defaults')
-
-
--- install configure lazy
+require('keybinding')
+require("harper")
 require('bootstrap-lazy')

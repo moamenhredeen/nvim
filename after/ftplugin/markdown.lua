@@ -4,7 +4,7 @@ if not vim.fn.executable("marksman") then
 	return
 end
 
-local on_attach = require('core.lsp').default_lsp_on_attach_handler
+local on_attach = require('custom.lsp').default_lsp_on_attach_handler
 
 vim.lsp.start({
 	name = 'marksman',

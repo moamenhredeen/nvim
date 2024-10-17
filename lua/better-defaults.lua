@@ -2,6 +2,7 @@
 -- ***
 -- *** better defaults
 -- ***
+-- characters: ✓  ✔  ✕ ✘  ♣ ♠ ♥ ♦ 𝄛
 
 
 
@@ -13,11 +14,8 @@ vim.g.loaded_netrwPlugin = 1
 
 -- unfold be default
 vim.o.foldlevel = 99
+vim.opt.fillchars:append({ fold = ' ' })
 
-
--- theme
-vim.o.background = "dark"
-vim.cmd('colorscheme default')
 
 
 -- disable virtual text in neovim
@@ -27,17 +25,18 @@ vim.cmd('colorscheme default')
 
 -- render tabs and eol
 -- vim.opt.list = true
+-- » ⤸ • « ␣
 -- vim.opt.listchars = {
 -- 	tab = '  ',
--- 	eol = '⤸',
--- 	trail = '•',
--- 	extends = '»',
--- 	precedes = '«',
--- 	nbsp = '␣',
+-- 	eol = ' ',
+-- 	trail = ' ',
+-- 	extends = ' ',
+-- 	precedes = ' ',
+-- 	nbsp = ' ',
 -- }
 
 -- cursor shape
--- vim.o.guicursor = "v-c-i-n:block-CurSearch"
+vim.o.guicursor = "v-c-i-n:block"
 
 
 -- status line
@@ -92,49 +91,9 @@ vim.o.wrap = false
 vim.o.splitbelow = true
 vim.o.splitright = true
 vim.opt.clipboard = 'unnamedplus'
-vim.o.tabstop = 4
-vim.o.shiftwidth = 4
+vim.o.tabstop = 2
+vim.o.shiftwidth = 2
 vim.opt.expandtab = false
 
 -- fold markdown
 -- vim.g.markdown_folding = 1
-
--- customize status bar
--- hi StatusLine ctermbg=whatever ctermfg=whatever
-
-
--- change default shell
-if vim.fn.has('linux') == 1 then
-	vim.opt.shell = 'fish'
-	vim.g.terminal_emulator = 'fish'
-elseif vim.fn.has('win32') == 1 then
-	vim.opt.shell = 'pwsh.exe -c '
-	vim.g.terminal_emulator = 'pwsh.exe'
-end
-
--- leader is used define global key mapping
-vim.g.mapleader = ' '
-
--- local leader used to define file type specific key mapping (hence the name local)
-vim.g.maplocalleader = ','
-
-vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
-
--- shortcuts
-vim.keymap.set('n', '<Leader>w', ':w<CR>')
-
--- pane navigation
-vim.keymap.set('n', '<M-j>', '<C-w>j')
-vim.keymap.set('n', '<M-k>', '<C-w>k')
-vim.keymap.set('n', '<M-h>', '<C-w>h')
-vim.keymap.set('n', '<M-l>', '<C-w>l')
-vim.keymap.set('n', '<M-o>', '<C-w>o')
-vim.keymap.set('n', '<M-n>', ':windo wincmd H<CR>')
-vim.keymap.set('n', '<M-m>', ':windo wincmd K<CR>')
-
--- always center search results
-vim.keymap.set('n', 'n', 'nzz', { silent = true })
-vim.keymap.set('n', 'N', 'Nzz', { silent = true })
-vim.keymap.set('n', '*', '*zz', { silent = true })
-vim.keymap.set('n', '#', '#zz', { silent = true })
-vim.keymap.set('n', 'g*', 'g*zz', { silent = true })
