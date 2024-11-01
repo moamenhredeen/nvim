@@ -4,3 +4,5 @@
 -- 	pattern = '<buffer>',
 -- 	callback = require('custom.utils').trim_trailing_whitespaces
 -- })
+
+vim.o.makeprg = 'cargo build --release'

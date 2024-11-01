@@ -7,7 +7,6 @@ return {
 	config = function()
 		require('nvim-treesitter.configs').setup({
 			ensure_installed = {
-				"typst",
 				"lua",
 				"vim",
 				"vimdoc",
@@ -22,7 +21,9 @@ return {
 				"angular",
 				"typst",
 				"markdown",
-				"markdown_inline"
+				"markdown_inline",
+				"norg",
+				"norg_meta"
 			},
 			sync_install = false,
 			ignore_install = {},

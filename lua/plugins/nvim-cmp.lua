@@ -17,6 +17,7 @@ return {
 				{ name = 'path' },
 				{ name = 'luasnip' },
 				{ name = 'buffer' },
+				{ name = 'neorg' }
 			},
 			snippet = {
 				expand = function(args)
