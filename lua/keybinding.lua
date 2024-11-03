@@ -31,3 +31,7 @@ vim.keymap.set('n', 'N', 'Nzz', { silent = true })
 vim.keymap.set('n', '*', '*zz', { silent = true })
 vim.keymap.set('n', '#', '#zz', { silent = true })
 vim.keymap.set('n', 'g*', 'g*zz', { silent = true })
+
+-- scratch buffers
+local scratch = require('scratch')
+vim.keymap.set('n', '<leader>i', scratch.create_scratch_buffer)
