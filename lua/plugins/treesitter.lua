@@ -22,8 +22,6 @@ return {
 				"typst",
 				"markdown",
 				"markdown_inline",
-				"norg",
-				"norg_meta"
 			},
 			sync_install = false,
 			ignore_install = {},

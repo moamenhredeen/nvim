@@ -13,5 +13,4 @@
 
 require('better-defaults')
 require('keybinding')
-require("harper")
 require('bootstrap-lazy')
