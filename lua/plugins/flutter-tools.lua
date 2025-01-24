@@ -41,7 +41,6 @@ return {
 					virtual_text = true, -- show the highlight using virtual text
 					virtual_text_str = "■", -- the virtual text character to highlight
 				},
-				on_attach = require('custom.lsp').default_lsp_on_attach_handler,
 				settings = {
 					showTodos = true,
 					completeFunctionCalls = true,

@@ -53,7 +53,7 @@ end
 
 vim.g.rustaceanvim = {
 	server = {
-		on_attach = on_attach
+		on_attach = on_attach,
 	},
 	tools = {
 		code_actions = {
@@ -62,7 +62,6 @@ vim.g.rustaceanvim = {
 		float_win_config = {
 			border = 'rounded',
 		},
-		-- test_executor = 'background'
 	}
 }
 

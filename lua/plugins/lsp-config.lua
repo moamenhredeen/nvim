@@ -1,11 +1,5 @@
-local _M = {}
 
-
-
--- default lsp on_attach handler
--- @param client vim.lsp.Client
--- @param bufnr integer
-_M.default_lsp_on_attach_handler = function(client, bufnr)
+local on_attach = function(client, bufnr)
 	client.server_capabilities.semanticTokensProvider = nil
 
 	local nmap = function(keys, func, desc)
@@ -35,9 +29,41 @@ _M.default_lsp_on_attach_handler = function(client, bufnr)
 	nmap('gS', telescope_built_ins.lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
 	nmap('<Leader>t', telescope_built_ins.lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
 	nmap('<Leader>o', telescope_built_ins.lsp_document_symbols, 'Document [O]utline')
-
-	-- vim.lsp.inlay_hint.enable()
 end
 
-
-return _M
+-- lsp config plugin
+return {
+	'neovim/nvim-lspconfig',
+	config = function ()
+		local lspconfig = require('lspconfig')
+		-- lspconfig.ts_ls.setup {
+		-- 	on_attach = on_attach
+		-- }
+		-- lspconfig.angularls.setup { 
+		-- 	on_attach = on_attach
+		-- }
+		lspconfig.zls.setup {
+			on_attach = on_attach
+		}
+		lspconfig.tinymist.setup {}
+		lspconfig.lua_ls.setup {
+			on_attach = on_attach,
+			on_init = function(client)
+				client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
+					runtime = {
+						version = 'LuaJIT'
+					},
+					workspace = {
+						checkThirdParty = false,
+						library = {
+							vim.env.VIMRUNTIME
+						}
+					}
+				})
+			end,
+			settings = {
+				Lua = {}
+			}
+		}
+	end
+}
