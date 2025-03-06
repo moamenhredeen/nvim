@@ -42,11 +42,10 @@ return {
 		require("mason").setup()
 		require("mason-lspconfig").setup()
 		local lspconfig = require('lspconfig')
-		lspconfig.ts_ls.setup {
+		lspconfig.angularls.setup {
 			on_attach = on_attach,
-			root_dir = "package.json"
 		}
-		lspconfig.denols.setup {
+		lspconfig.ts_ls.setup {
 			on_attach = on_attach,
 		}
 		lspconfig.zls.setup {
