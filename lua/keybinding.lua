@@ -16,8 +16,13 @@ vim.keymap.set({ 'n', 'i', 'v' }, '<C-j>', navigator.TmuxNvimNavigateDown)
 vim.keymap.set({ 'n', 'i', 'v' }, '<C-k>', navigator.TmuxNvimNavigateUp)
 vim.keymap.set({ 'n', 'i', 'v' }, '<C-l>', navigator.TmuxNvimNavigateRight)
 vim.keymap.set({ 'n', 'i', 'v' }, '<C-e>', navigator.TmuxNvimNavigateLastActive)
-vim.keymap.set({ 'n', 'i', 'v' }, '<C-t>', function()
+
+vim.keymap.set({ 'n', 'i', 'v' }, '<C-T>', function()
 	vim.system({ 'tmux', 'split-window', '-v', '-l', '15' })
+end)
+
+vim.keymap.set({ 'n', 'i', 'v' }, '<C-S-T>', function()
+	vim.system({ 'tmux', 'split-window', '-h'})
 end)
 
 

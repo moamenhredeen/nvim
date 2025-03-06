@@ -34,18 +34,38 @@ end
 -- lsp config plugin
 return {
 	'neovim/nvim-lspconfig',
+	dependencies = {
+		"williamboman/mason.nvim",
+		"williamboman/mason-lspconfig.nvim",
+	},
 	config = function ()
+		require("mason").setup()
+		require("mason-lspconfig").setup()
 		local lspconfig = require('lspconfig')
-		-- lspconfig.ts_ls.setup {
-		-- 	on_attach = on_attach
-		-- }
-		-- lspconfig.angularls.setup { 
-		-- 	on_attach = on_attach
-		-- }
+		lspconfig.ts_ls.setup {
+			on_attach = on_attach,
+			root_dir = "package.json"
+		}
+		lspconfig.denols.setup {
+			on_attach = on_attach,
+		}
 		lspconfig.zls.setup {
 			on_attach = on_attach
 		}
-		lspconfig.tinymist.setup {}
+		lspconfig.tinymist.setup {
+			on_attach = on_attach
+		}
+		lspconfig.angularls.setup {
+			on_attach = on_attach
+		}
+
+
+		lspconfig.svelte.setup{
+			on_attach = on_attach
+		}
+
+		lspconfig.marksman.setup{}
+
 		lspconfig.lua_ls.setup {
 			on_attach = on_attach,
 			on_init = function(client)
@@ -55,9 +75,11 @@ return {
 					},
 					workspace = {
 						checkThirdParty = false,
-						library = {
-							vim.env.VIMRUNTIME
-						}
+
+        		library = vim.api.nvim_get_runtime_file("", true)
+						-- library = {
+						-- 	vim.env.VIMRUNTIME
+						-- }
 					}
 				})
 			end,

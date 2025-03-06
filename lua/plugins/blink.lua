@@ -3,7 +3,7 @@ return {
 	version = '*',
 	opts = {
 		keymap = {
-			preset = 'default',
+			preset = 'super-tab',
 			-- ['<CR>'] = { 'accept', 'fallback' },
 		},
 		appearance = {
