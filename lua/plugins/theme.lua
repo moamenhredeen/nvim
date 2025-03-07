@@ -1,13 +1,13 @@
--- return {
--- 	"neanias/everforest-nvim",
--- 	version = false,
--- 	lazy = false,
--- 	priority = 1000,
--- 	config = function()
--- 		vim.o.background = "light"
--- 		vim.cmd [[colorscheme everforest]]
--- 	end,
--- }
+return {
+	"neanias/everforest-nvim",
+	version = false,
+	lazy = false,
+	priority = 1000,
+	config = function()
+		vim.o.background = "light"
+		vim.cmd [[colorscheme everforest]]
+	end,
+}
 
 
 -- return {
@@ -19,16 +19,16 @@
 -- 	end,
 -- }
 
-return {
-	"zenbones-theme/zenbones.nvim",
-	lazy = false,
-	priority = 1000,
-	config = function()
-		vim.g.zenbones_compat = 1
-		vim.o.background = "light"
-		vim.cmd.colorscheme('zenbones')
-	end
-}
+-- return {
+-- 	"zenbones-theme/zenbones.nvim",
+-- 	lazy = false,
+-- 	priority = 1000,
+-- 	config = function()
+-- 		vim.g.zenbones_compat = 1
+-- 		vim.o.background = "light"
+-- 		vim.cmd.colorscheme('zenbones')
+-- 	end
+-- }
 
 -- return {
 -- 	'projekt0n/github-nvim-theme',
