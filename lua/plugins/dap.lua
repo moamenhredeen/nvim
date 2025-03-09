@@ -8,17 +8,16 @@ return {
 		local dap = require('dap')
 
 		-- debug using leader key
-		vim.keymap.set('n', '<leader>dt', dap.toggle_breakpoint)
-
-		vim.keymap.set('n', '<leader>dd', dap.continue)
-		vim.keymap.set('n', '<leader>dc', dap.run_to_cursor)
-		vim.keymap.set('n', '<leader>df', dap.step_over)
-		vim.keymap.set('n', '<leader>db', dap.step_back)
-		vim.keymap.set('n', '<leader>di', dap.step_into)
-		vim.keymap.set('n', '<leader>do', dap.step_out)
-		vim.keymap.set('n', '<leader>de', function()
-			require('dapui').eval(nil, { enter = true })
-		end)
+		-- vim.keymap.set('n', '<leader>dt', dap.toggle_breakpoint)
+		-- vim.keymap.set('n', '<leader>dd', dap.continue)
+		-- vim.keymap.set('n', '<leader>dc', dap.run_to_cursor)
+		-- vim.keymap.set('n', '<leader>df', dap.step_over)
+		-- vim.keymap.set('n', '<leader>db', dap.step_back)
+		-- vim.keymap.set('n', '<leader>di', dap.step_into)
+		-- vim.keymap.set('n', '<leader>do', dap.step_out)
+		-- vim.keymap.set('n', '<leader>de', function()
+		-- 	require('dapui').eval(nil, { enter = true })
+		-- end)
 
 		-- intellij like keymapping
 		vim.keymap.set('n', '<F7>', dap.step_into)
