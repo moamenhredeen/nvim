@@ -1,11 +1,10 @@
--- *************************************************
--- configure treesitter
---
-
+---@diagnostic disable: missing-fields
 return {
-	"nvim-treesitter/nvim-treesitter",
+	'nvim-treesitter/nvim-treesitter-textobjects',
+	dependencies = {
+		'nvim-treesitter/nvim-treesitter',
+	},
 	config = function()
-		---@diagnostic disable
 		require('nvim-treesitter.configs').setup {
 			ensure_installed = {
 				"lua",
@@ -23,6 +22,7 @@ return {
 				"typst",
 				"markdown",
 				"markdown_inline",
+				"zig",
 			},
 			sync_install = false,
 			ignore_install = {},
@@ -40,15 +40,33 @@ return {
 					extended_mode = true,
 					max_file_lines = nil,
 				},
-				incremental_selection = {
+			},
+			textobjects = {
+				select = {
 					enable = true,
+					lookahead = true,
 					keymaps = {
-						node_incremental = "<Space>",
-						node_decremental = "<BS>",
+						["af"] = "@function.outer",
+						["if"] = "@function.inner",
+						["ac"] = "@class.outer",
+						["ic"] = { query = "@class.inner", desc = "Select inner part of a class region" },
+						-- You can also use captures from other query groups like `locals.scm`
+						["as"] = { query = "@local.scope", query_group = "locals", desc = "Select language scope" },
 					},
 				},
-			},
+				move = {
+					enable = true,
+					set_jumps = true,
+					goto_previous = {
+						["[c"] = "@class.outer",
+					},
+					goto_next = {
+						["]c"] = "@class.outer",
+					},
+				},
+			}
 		}
+
 
 		vim.wo.foldmethod = "expr"
 		vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
