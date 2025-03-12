@@ -38,5 +38,11 @@ vim.keymap.set('n', '#', '#zz', { silent = true })
 vim.keymap.set('n', 'g*', 'g*zz', { silent = true })
 
 -- scratch buffers
-local scratch = require('scratch')
-vim.keymap.set('n', '<leader>i', scratch.create_scratch_buffer)
+-- local scratch = require('scratch')
+-- vim.keymap.set('n', '<leader>i', scratch.create_scratch_buffer)
+
+-- spellchecking
+local toggle_spell = function ()
+	vim.o.spell = not vim.o.spell
+end
+vim.keymap.set("n", "zs", toggle_spell, {silent = true})
