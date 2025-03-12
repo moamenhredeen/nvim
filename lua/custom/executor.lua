@@ -1,8 +1,8 @@
 ---@type integer | nil
-local latest_buf_id = nil
+local last_win_id = nil
 
---@type integer | nil
-local latest_win_id = nil
+---@type integer | nil
+local last_buf_id = nil
 
 local win_config = {
 	split = "below",
@@ -38,70 +38,61 @@ end
 
 
 -- @param command to execute
-function M.execute_command(command, opts)
+function M.execute_command(command)
 
-	opts = opts or {}
-	opts.cwd = opts.cwd or vim.uv.cwd()
+	local prev_win_id = vim.api.nvim_get_current_win()
 
-	if not latest_buf_id then
-		latest_buf_id = vim.api.nvim_create_buf(false, true)
+	if last_win_id then
+		vim.api.nvim_win_close(last_win_id, true)
 	end
 
-	if (not latest_win_id) or (not vim.api.nvim_win_is_valid(latest_win_id)) then
-		latest_win_id = vim.api.nvim_open_win(latest_buf_id, false, win_config)
-		vim.wo[latest_win_id].number = false
+	if last_buf_id then
+		vim.api.nvim_buf_delete(last_buf_id, {})
 	end
 
-	-- hide the buffer when escape s pressed :)
-	vim.keymap.set('n', '<Esc>', '<CMD>hide<CR>', { buffer = latest_buf_id, noremap = true })
-	vim.keymap.set('n', 'q', '<CMD>hide<CR>', { buffer = latest_buf_id, noremap = true })
+	last_buf_id = vim.api.nvim_create_buf(false, true)
+	last_win_id = vim.api.nvim_open_win(last_buf_id, true, win_config)
 
-		-- TODO: how to save window size
-	-- vim.api.nvim_create_autocmd("WinResized", {
-	-- 	group = vim.api.nvim_create_augroup("zig-output-resized", {}),
-	-- 	callback = function ()
-	-- 		if latest_win_id and vim.api.nvim_win_is_valid(latest_win_id) then
-	-- 			win_config.width = vim.api.nvim_win_get_width(latest_win_id)
-	-- 			win_config.height = vim.api.nvim_win_get_width(latest_win_id)
+	-- hide the cursor that apears at the end of the output
+	vim.api.nvim_create_autocmd("TermOpen", {
+		buffer = last_buf_id,
+		callback = function ()
+    	vim.cmd("highlight! Cursor guibg=NONE guifg=NONE gui=NONE")
+		end
+	})
+	vim.fn.termopen(command)
+	vim.api.nvim_set_current_win(prev_win_id)
+
+
+	-- previously i used jobstart and piped the output to a regular buffer (idk why)
+	-- run the command
+	-- vim.api.nvim_buf_set_lines(latest_buf_id, 0, -1, false, {})
+	-- vim.fn.jobstart(command, {
+	-- 	stdout_buffered = true,
+	-- 	stderr_buffered = true,
+	-- 	on_stdout = function (_, data)
+	-- 		if not data then
+	-- 			return
 	-- 		end
+	-- 		vim.schedule(function ()
+	-- 			vim.api.nvim_buf_set_lines(latest_buf_id, -1, -1, false, data)
+	-- 			vim.api.nvim_win_set_cursor(latest_win_id, {vim.api.nvim_buf_line_count(latest_buf_id), 0})
+	-- 		end)
+	-- 	end,
+	-- 	on_stderr = function (_, data)
+	-- 		if not data then
+	-- 			return
+	-- 		end
+	-- 		vim.schedule(function ()
+	-- 			vim.api.nvim_buf_set_lines(latest_buf_id, -1, -1, false, data)
+	-- 			vim.api.nvim_win_set_cursor(latest_win_id, {vim.api.nvim_buf_line_count(latest_buf_id), 0})
+	-- 		end)
 	-- 	end
 	-- })
 
-	vim.api.nvim_create_autocmd("QuitPre", {
-		group = vim.api.nvim_create_augroup("zig-output-closed", {}),
-		callback = function ()
-			if latest_win_id then
-				latest_win_id = nil
-				latest_buf_id = nil
-			end
-		end
-	})
-
-	-- run the command
-	-- vim.fn.termopen(command)
-	vim.api.nvim_buf_set_lines(latest_buf_id, 0, -1, false, {})
-	vim.fn.jobstart(command, {
-		stdout_buffered = true,
-		stderr_buffered = true,
-		on_stdout = function (_, data)
-			if not data then
-				return
-			end
-			vim.schedule(function ()
-				vim.api.nvim_buf_set_lines(latest_buf_id, -1, -1, false, data)
-				vim.api.nvim_win_set_cursor(latest_win_id, {vim.api.nvim_buf_line_count(latest_buf_id), 0})
-			end)
-		end,
-		on_stderr = function (_, data)
-			if not data then
-				return
-			end
-			vim.schedule(function ()
-				vim.api.nvim_buf_set_lines(latest_buf_id, -1, -1, false, data)
-				vim.api.nvim_win_set_cursor(latest_win_id, {vim.api.nvim_buf_line_count(latest_buf_id), 0})
-			end)
-		end
-	})
+	-- hide the buffer when escape s pressed :)
+	vim.keymap.set('n', '<Esc>', '<CMD>hide<CR>', { buffer = last_buf_id, noremap = true })
+	vim.keymap.set('n', 'q', '<CMD>hide<CR>', { buffer = last_buf_id, noremap = true })
 end
 
 return M
