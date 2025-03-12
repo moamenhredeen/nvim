@@ -79,7 +79,6 @@ local on_attach = function(client, _)
 	-- find a symbol
 	nmap('gs', find_document_symbol, '[D]ocument [S]ymbols')
 	nmap('gS', telescope_built_ins.lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
-	nmap('<Leader>t', telescope_built_ins.lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
 	nmap('<Leader>o', find_document_symbol, 'Document [O]utline')
 end
 
