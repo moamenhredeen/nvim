@@ -4,7 +4,7 @@ return {
 	opts = {
 		keymap = {
 			preset = "enter",
-			['<C-e>'] = { 
+			['<C-e>'] = {
 				function(cmp)
 					if cmp.is_visible() then
 						return cmp.hide()
@@ -14,6 +14,8 @@ return {
 				end,
 				"fallback",
 			},
+			['<C-p>'] = { 'show_signature', 'hide_signature', 'fallback' },
+			['<C-k>'] = {},
       ['<C-space>'] = {},
 			['<Tab>'] = {},
 			['<S-Tab>'] = {},
