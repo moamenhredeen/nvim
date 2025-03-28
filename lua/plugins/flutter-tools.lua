@@ -5,6 +5,61 @@ return {
 		'nvim-lua/plenary.nvim',
 	},
 	config = function()
+		local my_custom_on_attach = function(client, _)
+			client.server_capabilities.semanticTokensProvider = nil
+
+			local nmap = function(keys, func, desc)
+				if desc then
+					desc = 'LSP: ' .. desc
+				end
+				vim.keymap.set('n', keys, func, { desc = desc })
+			end
+
+			local telescope_built_ins = require('telescope.builtin')
+
+			local find_document_symbol = function()
+				telescope_built_ins.lsp_document_symbols {
+					show_line = true,
+					symbols = {
+						"module",
+						"namespace",
+						"package",
+						"class",
+						"method",
+						"property",
+						"interface",
+						"enum",
+						"struct",
+						"function",
+					}
+				}
+			end
+
+			-- lsp actions
+			nmap('<Leader>a', vim.lsp.buf.code_action, '[A]ction')
+			nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
+
+			nmap('<leader>d', function()
+				vim.diagnostic.open_float({
+					scope = "line",
+				})
+			end, "Show [D]iagnostic under Cursor")
+
+			-- refactoring
+			nmap('<Leader>rr', vim.lsp.buf.rename, '[R]efactor [R]ename')
+
+			-- code navigation
+			nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
+			nmap('gr', telescope_built_ins.lsp_references, '[G]oto [R]eferences')
+			nmap('gi', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
+
+
+			-- find a symbol
+			nmap('gs', find_document_symbol, '[D]ocument [S]ymbols')
+			nmap('gS', telescope_built_ins.lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+			nmap('<Leader>o', find_document_symbol, 'Document [O]utline')
+		end
+
 		require("flutter-tools").setup {
 			decorations = {
 				statusline = {
@@ -33,21 +88,14 @@ return {
 				auto_open = false,
 			},
 			lsp = {
-				color = { -- show the derived colours for dart variables
-					enabled = true, -- whether or not to highlight color variables at all, only supported on flutter >= 2.10
-					background = true, -- highlight the background
-					background_color = nil, -- required, when background is transparent (i.e. background_color = { r = 19, g = 17, b = 24},)
-					foreground = true, -- highlight the foreground
-					virtual_text = true, -- show the highlight using virtual text
-					virtual_text_str = "■", -- the virtual text character to highlight
-				},
 				settings = {
 					showTodos = true,
 					completeFunctionCalls = true,
 					renameFilesWithClasses = "always",
 					enableSnippets = true,
 					updateImportsOnRename = true,
-				}
+				},
+				on_attach = my_custom_on_attach,
 			}
 		}
 	end,

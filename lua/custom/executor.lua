@@ -42,11 +42,11 @@ function M.execute_command(command)
 
 	local prev_win_id = vim.api.nvim_get_current_win()
 
-	if last_win_id then
+	if last_win_id and vim.api.nvim_win_is_valid(last_win_id) then
 		vim.api.nvim_win_close(last_win_id, true)
 	end
 
-	if last_buf_id then
+	if last_buf_id and vim.api.nvim_buf_is_valid(last_buf_id) then
 		vim.api.nvim_buf_delete(last_buf_id, {})
 	end
 

@@ -6,27 +6,8 @@ return {
 	},
 	config = function()
 		require('nvim-treesitter.configs').setup {
-			ensure_installed = {
-				"lua",
-				"vim",
-				"vimdoc",
-				"go",
-				"javascript",
-				"typescript",
-				"scss",
-				"zig",
-				"rust",
-				"toml",
-				"java",
-				"angular",
-				"typst",
-				"markdown",
-				"markdown_inline",
-				"zig",
-			},
 			sync_install = false,
 			ignore_install = {},
-			auto_install = true,
 			modules = {
 				highlight = {
 					enable = true,
