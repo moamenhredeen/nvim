@@ -20,7 +20,7 @@ vim.opt.fillchars:append({ fold = ' ' })
 
 -- disable virtual text in neovim
 vim.diagnostic.config({
-	virtual_text = false,
+	virtual_text = true,
 })
 
 -- render tabs and eol
