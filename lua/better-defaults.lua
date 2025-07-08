@@ -97,3 +97,12 @@ vim.opt.expandtab = false
 
 -- fold markdown
 -- vim.g.markdown_folding = 1
+
+-- additional filetypes
+vim.filetype.add({
+  pattern = {
+    ['.*/.*webc'] = 'html',
+  },
+})
+
+

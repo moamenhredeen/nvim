@@ -114,8 +114,6 @@ return {
 			on_attach = on_attach
 		}
 
-		lspconfig.marksman.setup{}
-
 		lspconfig.lua_ls.setup {
 			on_attach = on_attach,
 			on_init = function(client)

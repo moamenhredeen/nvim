@@ -5,7 +5,6 @@
   "conform.nvim": { "branch": "master", "commit": "db8a4a9edb217067b1d7a2e0362c74bfe9cc944d" },
   "crates.nvim": { "branch": "main", "commit": "85356807f3a0e9a3f7015586f3a010170d338686" },
   "diffview.nvim": { "branch": "main", "commit": "4516612fe98ff56ae0415a259ff6361a89419b0a" },
-  "everforest-nvim": { "branch": "main", "commit": "2eb7c348f880ba93de4d98cae049c9441f5d4d49" },
   "fidget.nvim": { "branch": "main", "commit": "0ba1e16d07627532b6cae915cc992ecac249fb97" },
   "flutter-tools.nvim": { "branch": "main", "commit": "70430c32d176f4a15c6e2c80586cd2791e3a664e" },
   "friendly-snippets": { "branch": "main", "commit": "efff286dd74c22f731cdec26a70b46e5b203c619" },
@@ -27,7 +26,6 @@
   "nvim-treesitter": { "branch": "master", "commit": "99ea6c5d4389a3278769eb6abb7b3ebefb7d9f2a" },
   "nvim-treesitter-textobjects": { "branch": "master", "commit": "143856b1cee509a190cc8c17ddb0638002171235" },
   "nvim-web-devicons": { "branch": "master", "commit": "d0cafff5c4347a604a07edf7bb9a91fda7eb577e" },
-  "obsidian.nvim": { "branch": "main", "commit": "ae1f76a75c7ce36866e1d9342a8f6f5b9c2caf9b" },
   "oil.nvim": { "branch": "master", "commit": "548587d68b55e632d8a69c92cefd981f360634fa" },
   "package-info.nvim": { "branch": "master", "commit": "3de4f3569ce60e248707df042b72769b3ec343b8" },
   "plenary.nvim": { "branch": "master", "commit": "857c5ac632080dba10aae49dba902ce3abf91b35" },
@@ -35,5 +33,6 @@
   "telescope-ui-select.nvim": { "branch": "master", "commit": "6e51d7da30bd139a6950adf2a47fda6df9fa06d2" },
   "telescope.nvim": { "branch": "master", "commit": "814f102cd1da3dc78c7d2f20f2ef3ed3cdf0e6e4" },
   "typst-preview.nvim": { "branch": "master", "commit": "0354cc1a7a5174a2e69cdc21c4db9a3ee18bb20a" },
-  "typst.vim": { "branch": "main", "commit": "8ce752f1ba1277046429cb469c17ff2e1abc718f" }
+  "typst.vim": { "branch": "main", "commit": "8ce752f1ba1277046429cb469c17ff2e1abc718f" },
+  "zenbones.nvim": { "branch": "main", "commit": "510819be60a7e470f244488bc705c1fbcd88c4fc" }
 }
