@@ -92,67 +92,24 @@ return {
 	config = function ()
 		require("mason").setup()
 		require("mason-lspconfig").setup()
-		local lspconfig = require('lspconfig')
-		local lspconfig_configs = require('lspconfig.configs')
 
 		-- bromo: local Java LSP under active development.
 		-- Launcher script is built by `./mvnw -DskipTests package` in the bromo repo.
-		if not lspconfig_configs.bromo then
-			lspconfig_configs.bromo = {
-				default_config = {
-					cmd = { 'C:/Users/mhraden/git-repos/bromo/bromo.bat', '--stdio' },
-					filetypes = { 'java' },
-					root_dir = lspconfig.util.root_pattern('pom.xml', '.git'),
-					settings = {},
-				},
-			}
-		end
-		lspconfig.bromo.setup {
+		vim.lsp.config('bromo', {
+			cmd = { 'C:/Users/mhraden/git-repos/bromo/bromo.bat', '--stdio' },
+			filetypes = { 'java' },
+			root_markers = { 'pom.xml', '.git' },
 			on_attach = on_attach,
-		}
+		})
 
-		lspconfig.angularls.setup {
+		vim.lsp.config('angularls', {
 			on_attach = on_attach,
-		}
+		})
 
-		lspconfig.ts_ls.setup {
+		vim.lsp.config('ts_ls', {
 			on_attach = on_attach,
-		}
-		-- lspconfig.zls.setup {
-		-- 	on_attach = on_attach
-		-- }
-		-- lspconfig.tinymist.setup {
-		-- 	on_attach = on_attach
-		-- }
-		-- lspconfig.angularls.setup {
-		-- 	on_attach = on_attach
-		-- }
+		})
 
-
-		-- lspconfig.svelte.setup{
-		-- 	on_attach = on_attach
-		-- }
-
-		-- lspconfig.lua_ls.setup {
-		-- 	on_attach = on_attach,
-		-- 	on_init = function(client)
-		-- 		client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
-		-- 			runtime = {
-		-- 				version = 'LuaJIT'
-		-- 			},
-		-- 			workspace = {
-		-- 				checkThirdParty = false,
-
-  --       		library = vim.api.nvim_get_runtime_file("", true)
-		-- 				-- library = {
-		-- 				-- 	vim.env.VIMRUNTIME
-		-- 				-- }
-		-- 			}
-		-- 		})
-		-- 	end,
-		-- 	settings = {
-		-- 		Lua = {}
-		-- 	}
-		-- }
+		vim.lsp.enable({ 'bromo', 'angularls', 'ts_ls' })
 	end
 }
