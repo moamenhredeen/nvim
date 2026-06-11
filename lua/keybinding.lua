@@ -9,6 +9,9 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 -- shortcuts
 vim.keymap.set('n', '<Leader>w', ':w<CR>')
 
+-- terminal mode exit (double Esc; single Esc still passes through to TUI apps)
+vim.keymap.set('t', '<Esc><Esc>', [[<C-\><C-n>]])
+
 -- pane navigation (with tmux integration)
 local navigator = require('custom.tmux-integration')
 vim.keymap.set({ 'n', 'i', 'v' }, '<C-h>', navigator.TmuxNvimNavigateLeft)

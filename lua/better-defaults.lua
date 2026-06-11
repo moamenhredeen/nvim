@@ -42,10 +42,43 @@ vim.o.guicursor = "v-c-i-n:block"
 -- status line
 vim.o.statusline = " %Y | %m %f %=%l/%L=%p%% "
 
+-- use pwsh (PowerShell 7+) as terminal shell on Windows
+if vim.fn.has('win32') == 1 and vim.fn.executable('pwsh') == 1 then
+	vim.o.shell = 'pwsh'
+	vim.o.shellcmdflag =
+		'-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;'
+	vim.o.shellredir = '2>&1 | %%{ "$_" } | Out-File %s; exit $LastExitCode'
+	vim.o.shellpipe = '2>&1 | %%{ "$_" } | Tee-Object %s; exit $LastExitCode'
+	vim.o.shellquote = ''
+	vim.o.shellxquote = ''
+end
+
+-- start terminal buffers in insert (terminal) mode
+vim.api.nvim_create_autocmd({ 'TermOpen', 'BufEnter' }, {
+	pattern = 'term://*',
+	callback = function()
+		vim.cmd('startinsert')
+	end,
+})
+
+-- no line numbers in terminal
+vim.api.nvim_create_autocmd('TermOpen', {
+	pattern = '*',
+	callback = function()
+		vim.opt_local.number = false
+		vim.opt_local.relativenumber = false
+		vim.opt_local.signcolumn = 'no'
+	end,
+})
+
 -- better performance
 vim.loader.enable()
 
 vim.o.termguicolors = true
+
+-- local colorscheme: colors/jetbrains-dark.lua + lua/jetbrains-dark.lua
+vim.o.background = "dark"
+vim.cmd.colorscheme("jetbrains-dark")
 
 -- set font for gui neovim clients
 vim.opt.guifont = 'JetBrainsMono Nerd Font'
