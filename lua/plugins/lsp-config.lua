@@ -95,21 +95,17 @@ return {
 
 		-- bromo: local Java LSP under active development.
 		-- Launcher script is built by `./mvnw -DskipTests package` in the bromo repo.
-		vim.lsp.config('bromo', {
-			cmd = { 'C:/Users/mhraden/git-repos/bromo/bromo.bat', '--stdio' },
-			filetypes = { 'java' },
-			root_markers = { 'pom.xml', '.git' },
-			on_attach = on_attach,
-		})
-
-		vim.lsp.config('angularls', {
-			on_attach = on_attach,
-		})
+		-- vim.lsp.config('bromo', {
+		-- 	cmd = { 'C:/Users/mhraden/git-repos/bromo/bromo.bat', '--stdio' },
+		-- 	filetypes = { 'java' },
+		-- 	root_markers = { 'pom.xml', '.git' },
+		-- 	on_attach = on_attach,
+		-- })
 
 		vim.lsp.config('ts_ls', {
 			on_attach = on_attach,
 		})
 
-		vim.lsp.enable({ 'bromo', 'angularls', 'ts_ls' })
+		vim.lsp.enable({ 'ts_ls' })
 	end
 }

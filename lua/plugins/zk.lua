@@ -44,6 +44,33 @@ return {
 		vim.keymap.set("n", "<Leader>zt", zk_commands.get("ZkTags"))
 		vim.keymap.set("n", "<Leader>zf", search_notes)
 
+		local open_graph = function()
+			local notebook = vim.fn.expand("~/notes")
+			local template = notebook .. "/graph-viewer.html"
+			local tmp = vim.fn.tempname() .. ".html"
+
+			local f = io.open(template, "r")
+			if not f then
+				vim.notify("graph-viewer.html not found in " .. notebook, vim.log.levels.ERROR)
+				return
+			end
+			local html = f:read("*a")
+			f:close()
+
+			local json = vim.fn.system("zk graph --format=json --quiet")
+			-- use function replacement to avoid Lua treating % in JSON as pattern escapes
+			html = html:gsub("__GRAPH_JSON__", function() return json end, 1)
+
+			local out = io.open(tmp, "w")
+			if not out then return end
+			out:write(html)
+			out:close()
+
+			vim.ui.open(tmp)
+		end
+
+		vim.keymap.set("n", "<Leader>zg", open_graph, { desc = "Open knowledge graph" })
+
 		-- LSP attach + buffer-local maps for markdown files inside the notebook.
 		-- zk-nvim's own auto-attach is broken on Windows (notebook_root fails on
 		-- backslash paths), so attach manually here.
