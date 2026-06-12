@@ -3,8 +3,9 @@ local M = {}
 
 -- palette from IntelliJ IDEA New UI Dark defaults
 local p = {
-	bg          = "#17181B", -- editor background
-	bg_alt      = "#1E1F22", -- panels, popups
+	--bg          = "#17181B", -- editor background
+	bg          = "#111111", -- editor background
+	bg_alt      = "#222222", -- panels, popups
 	bg_dim      = "#1F2024", -- caret row
 	fg          = "#BCBEC4", -- default text
 	fg_dim      = "#868A91",

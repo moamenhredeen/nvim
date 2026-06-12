@@ -1,8 +1,7 @@
-
 ---@type integer?  stores the id of the autogruop of the diagnostic quickfix auto command
 local _diagnosticAutoGroupId = nil
 
-local _openDiagnosticQuickList = function ()
+local _openDiagnosticQuickList = function()
 	local win_id = vim.api.nvim_get_current_win()
 	vim.diagnostic.setqflist({
 		title = "Workspace Diagnostics"
@@ -22,7 +21,7 @@ local on_attach = function(client, _)
 
 	local telescope_built_ins = require('telescope.builtin')
 
-	local find_document_symbol = function ()
+	local find_document_symbol = function()
 		telescope_built_ins.lsp_document_symbols {
 			show_line = true,
 			symbols = {
@@ -44,16 +43,16 @@ local on_attach = function(client, _)
 	nmap('<Leader>a', vim.lsp.buf.code_action, '[A]ction')
 	nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
 
-	nmap('<leader>d', function ()
+	nmap('<leader>d', function()
 		vim.diagnostic.open_float({
 			scope = "line",
 		})
 	end, "Show [D]iagnostic under Cursor")
 
-	nmap("<leader>qd", function ()
+	nmap("<leader>qd", function()
 		if _diagnosticAutoGroupId then
 			pcall(vim.api.nvim_del_augroup_by_id, _diagnosticAutoGroupId)
-			vim.cmd[[cclose]]
+			vim.cmd [[cclose]]
 			_diagnosticAutoGroupId = nil
 		else
 			_diagnosticAutoGroupId = vim.api.nvim_create_augroup("diagnostic-quickfix-group", {});
@@ -89,23 +88,30 @@ return {
 		"williamboman/mason.nvim",
 		"williamboman/mason-lspconfig.nvim",
 	},
-	config = function ()
+	config = function()
 		require("mason").setup()
 		require("mason-lspconfig").setup()
-
-		-- bromo: local Java LSP under active development.
-		-- Launcher script is built by `./mvnw -DskipTests package` in the bromo repo.
-		-- vim.lsp.config('bromo', {
-		-- 	cmd = { 'C:/Users/mhraden/git-repos/bromo/bromo.bat', '--stdio' },
-		-- 	filetypes = { 'java' },
-		-- 	root_markers = { 'pom.xml', '.git' },
-		-- 	on_attach = on_attach,
-		-- })
 
 		vim.lsp.config('ts_ls', {
 			on_attach = on_attach,
 		})
 
-		vim.lsp.enable({ 'ts_ls' })
+		-- vim.lsp.config('lua_ls', {
+		-- 	on_attach = on_attach,
+		-- })
+
+		vim.lsp.config('dartls', {
+			on_attach = on_attach,
+			settings = {
+				dart = {
+					analysisExcludedFolders = {
+						vim.fn.expand("$HOME/.pub-cache"),
+						vim.fn.expand("$HOME/tools/flutter"),
+					},
+				},
+			},
+		})
+
+		vim.lsp.enable({ 'ts_ls', 'lua_ls', 'dartls' })
 	end
 }

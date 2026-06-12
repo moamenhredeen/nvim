@@ -14,6 +14,14 @@ return {
 		end
 
 		require("nvim-tree").setup {
+			disable_netrw = true,
+			hijack_netrw = false,
+
+			hijack_directories = {
+				enable = false,
+				auto_open = false,
+			},
+
 			on_attach = my_on_attach,
 			sort_by = "case_sensitive",
 			view = {

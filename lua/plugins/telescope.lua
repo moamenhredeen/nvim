@@ -41,7 +41,7 @@ return {
 			telescope_builtin.find_files({ search_dirs = project_search_dirs() })
 		end, { desc = 'open [F]ile' })
 		vim.keymap.set('n', '<Leader>b', function()
-			telescope_builtin.buffers({ sort_lastused = true, only_cwd = true, ignore_current_buffer = true });
+			telescope_builtin.buffers({ sort_lastused = true, ignore_current_buffer = true });
 		end, { desc = 'open [B]uffer' })
 		vim.keymap.set('n', '<Leader>x', telescope_builtin.commands, { desc = '[C]ommands' })
 		vim.keymap.set('n', '<Leader>ss', telescope_builtin.builtin, { desc = 'List Telescope Bultin' })
