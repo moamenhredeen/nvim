@@ -1,6 +1,7 @@
 return {
-	"moamenhredeen/dired.nvim",
-	branch = "main",
+	-- local checkout for testing the Rust core; restore the line below when done
+	-- "moamenhredeen/dired.nvim", branch = "main",
+	dir = "/home/moamen/git-repos/dired.nvim",
 	dependencies = {
 		"ej-shafran/compile-mode.nvim",
 	},
